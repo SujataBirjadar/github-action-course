@@ -1,17 +1,22 @@
 name: 06-Contexts
+run-name: 06 Context | DEBUG - ${{ inputs.debug }}
 on:
   push:
-  workflow_dispatch: 
+  workflow_dispatch:
+    inputs:
+      debug:
+        type: boolean
+        default: false
 jobs:
   echo-data:
     runs-on: ubuntu-latest
     steps:
       - name: Display Information
         run: |
-          echo "Event name: $ {{ github.event_name }}"
-          echo "Ref: $ {{ github.ref }}"
-          echo "SHA: $ {{ github.sha }}"
+          echo "Event name:" ${{ github.event_name }}
+          echo "Ref: ${{ github.ref }}"
+          echo "SHA: ${{ github.sha }}"
       - name: Retrieve Variable
         run: |
-          echo "MY VAR: $ {{ var.MY_VAR }}"
+          echo "MY VAR: ${{ var.MY_VAR }}"
         
